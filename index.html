@@ -1,74 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Durgansh Dixit</title>
-    <style>
-        /* Soothing color palette */
-        :root {
-  --primary-color: #B2E5F2; /* Pale Robins Egg Blue */
-  --secondary-color: #CBDFFA; /* Light Powder Blue */
-  --text-color: #ffffff; /* Deep Slate Gray */
-  --accent-color: #FFDEAD; /* Cornsilk */
-}
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-color);
-            background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 2rem;
-            background-color: rgb(8, 8, 8);
-            border-radius: 0.5rem;
-            box-shadow: 0 0 20px rgba(141, 133, 133, 0.2);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--primary-color);
-        }
-
-        .accent {
-            color: var(--accent-color);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Hi I'm <span class="accent">Durgansh Dixit</span></h1>
-        <h3>I train <span class="accent">Deep neural networks</span> for <span class="accent">conversational AI</span> (ASR, TTS, STT systems), and <span class="accent">Natural Language Processing</span>.</h3>
-        <p>About Me:</p>
-        <p>I'm passionate about leveraging artificial intelligence to create innovative solutions that enhance human-computer interaction.</p>
-        <p>You can connect with me at <a href="mailto:saniket919@gmail.com" class="accent">saniket919@gmail.com</a></p>
-        <p>Thank you for visiting my website.</p>
-    </div>
-</body>
-</html>
- -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,13 +23,12 @@
         }
         h1, h3 {
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            text-shadow: 0 0 5px #0ff;
         }
         .accent {
-            color: #0ff;
             font-weight: bold;
             position: relative;
-            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            text-shadow: 0 0 5px #0ff;
         }
         .accent::after {
             content: '';
@@ -110,9 +38,9 @@
             bottom: -2px;
             left: 0;
             background-color: #0ff;
-            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            box-shadow: 0 0 5px #0ff;
             transform: scaleX(0);
-            transition: transform 0.5s ease-out;
+            transition: transform 0.3s ease-out;
         }
         .accent:hover::after {
             transform: scaleX(1);
@@ -125,9 +53,9 @@
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: all 0.2s ease;
+            transition: all 0.1s ease;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            box-shadow: 0 0 5px #0ff;
         }
         .cursor-follower {
             width: 8px;
@@ -137,9 +65,9 @@
             position: fixed;
             pointer-events: none;
             z-index: 9998;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            box-shadow: 0 0 5px #0ff;
         }
         #neural-network {
             position: fixed;
@@ -151,13 +79,22 @@
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
         .float {
-            animation: float 8s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
         }
         p {
-            text-shadow: 0 0 5px #0ff;
+            text-shadow: 0 0 3px #0ff;
+        }
+        .color-change {
+            animation: colorChange 10s infinite;
+        }
+        @keyframes colorChange {
+            0%, 100% { color: #0ff; }
+            25% { color: #ff00ff; }
+            50% { color: #ffff00; }
+            75% { color: #00ff00; }
         }
     </style>
 </head>
@@ -166,46 +103,48 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <div class="container">
-        <h1 class="float">Hi I'm <span class="accent">Durgansh Dixit</span></h1>
-        <h3>I train <span class="accent">Deep neural networks</span> for <span class="accent">conversational AI</span> (ASR, TTS, STT systems), and <span class="accent">Natural Language Processing</span>.</h3>
-        <p>About Me:</p>
-        <p>I'm passionate about leveraging artificial intelligence to create innovative solutions that enhance human-computer interaction.</p>
-        <p>You can connect with me at <a href="mailto:saniket919@gmail.com" class="accent">saniket919@gmail.com</a></p>
+        <h1 class="float">Hi I'm Durgansh Dixit</h1>
+       
+        <p>I'm passionate about making <span class="accent color-change"> HUMAN LIKE COMPUTERS or COMPUTER LIKE HUMANS in next 25 years.</p>
+        <p>You can connect with me at <a href="mailto:saniket919@gmail.com" class="accent color-change">saniket919@gmail.com</a></p>
         <p>Thank you for visiting my website.</p>
     </div>
     <script>
         // Cursor animation
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
             
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
+            followerX += (cursorX - followerX) * 0.1;
+            followerY += (cursorY - followerY) * 0.1;
+            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
 
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
-        });
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
 
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
+        document.addEventListener('mousedown', () => cursor.style.transform += ' scale(0.8)');
+        document.addEventListener('mouseup', () => cursor.style.transform = cursor.style.transform.replace(' scale(0.8)', ''));
 
-        // Neural network animation
+        // Neural network and brain cell animation
         const canvas = document.getElementById('neural-network');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
         const particles = [];
-        const numParticles = 80;
+        const brainCells = [];
+        const numParticles = 50;
+        const numBrainCells = 5;
 
         class Particle {
             constructor() {
@@ -220,21 +159,54 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                if (this.x > canvas.width || this.x < 0) {
-                    this.speedX = -this.speedX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.speedY = -this.speedY;
-                }
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
             }
 
             draw() {
                 ctx.fillStyle = '#0ff';
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = '#0ff';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
+            }
+        }
+
+        class BrainCell {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 20 + 10;
+                this.angle = 0;
+                this.speed = Math.random() * 0.02 + 0.01;
+            }
+
+            update() {
+                this.angle += this.speed;
+                this.x += Math.cos(this.angle) * 2;
+                this.y += Math.sin(this.angle) * 2;
+
+                if (this.x > canvas.width + this.size) this.x = -this.size;
+                if (this.x < -this.size) this.x = canvas.width + this.size;
+                if (this.y > canvas.height + this.size) this.y = -this.size;
+                if (this.y < -this.size) this.y = canvas.height + this.size;
+            }
+
+            draw() {
+                ctx.strokeStyle = '#ff00ff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.stroke();
+
+                for (let i = 0; i < 5; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const length = Math.random() * this.size;
+                    const endX = this.x + Math.cos(angle) * length;
+                    const endY = this.y + Math.sin(angle) * length;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(endX, endY);
+                    ctx.stroke();
+                }
             }
         }
 
@@ -242,27 +214,39 @@
             for (let i = 0; i < numParticles; i++) {
                 particles.push(new Particle());
             }
+            for (let i = 0; i < numBrainCells; i++) {
+                brainCells.push(new BrainCell());
+            }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            brainCells.forEach(cell => {
+                cell.update();
+                cell.draw();
+            });
+
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
                 for (let j = i; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 150) {
+                    if (distance < 100) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / 150})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / 100})`;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
                     }
                 }
             }
+
             requestAnimationFrame(animate);
         }
 
