@@ -24,7 +24,7 @@
         }
         h1, h2 {
             margin-bottom: 1rem;
-            text-shadow: 0 0 5px #0ff;
+            text-shadow: 0 0 15px #0ff;
         }
         .accent {
             font-weight: bold;
@@ -66,7 +66,7 @@
             position: fixed;
             pointer-events: none;
             z-index: 9998;
-            transition: all 0.2s ease;
+            transition: all 0.1s ease;
             transform: translate(-50%, -50%);
             box-shadow: 0 0 5px #0ff;
         }
@@ -113,9 +113,9 @@
             z-index: 2;
         }
         .meet-button:hover {
-            background-color: #ff00ff;
+            background-color: #000000;
             color: #fff;
-            transform: scale(1.05);
+            transform: scale(1.25);2
         }
         .quote {
             font-style: italic;
@@ -126,7 +126,7 @@
         .quote1{
              font-style: italic;
             color: #0ff;
-            margin: 2rem 0;
+            margin: 15rem 0;
             text-shadow: 0 0 3px #0ff;
             }
     </style>
@@ -142,10 +142,14 @@
         
         <h2>Ready to Meet?</h2>
 
-        <div id="quote1" class="quote1"></div>
         
-        <a href="https://meet.google.com/yhb-ieji-qsw" class="meet-button accent color-change" target="_blank">Join Google Meet</a>
+        
+        <a href="https://meet.google.com/yhb-ieji-qsw" class="meet-button accent" target="_blank">Join Google Meet</a>
+        
+        <div id="quote1" class="quote1"></div>
     </div>
+    
+
 
     <script>
         // Cursor animation
