@@ -70,7 +70,7 @@
             transform: translate(-50%, -50%);
             box-shadow: 0 0 5px #0ff;
         }
-        #neural-network {
+        #neural-network, #threejs-scene {
             position: fixed;
             top: 0;
             left: 0;
@@ -123,34 +123,28 @@
             margin: 2rem 0;
             text-shadow: 0 0 3px #0ff;
         }
-        .quote1{
-             font-style: italic;
+        .quote1 {
+            font-style: italic;
             color: #0ff;
             margin: 15rem 0;
             text-shadow: 0 0 3px #0ff;
-            }
+        }
     </style>
 </head>
 <body>
     <canvas id="neural-network"></canvas>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
+    <div id="threejs-scene"></div>
     <div class="container">
         <h1 class="float">Let's Connect!</h1>
-        
         <div id="quote" class="quote"></div>
-        
         <h2>Ready to Meet?</h2>
-
-        
-        
         <a href="https://meet.google.com/yhb-ieji-qsw" class="meet-button accent" target="_blank">Join Google Meet</a>
-        
         <div id="quote1" class="quote1"></div>
     </div>
-    
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // Cursor animation
         const cursor = document.querySelector('.cursor');
@@ -252,23 +246,38 @@
             init();
         });
 
-        
-        const quotes = [
+        // Three.js animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('threejs-scene').appendChild(renderer.domElement);
 
-          "Great things in business are never done by one person. They're done by a team of people. - Steve Jobs"
-            // "The art of communication is the language of leadership.",
-            // "Great things in business are never done by one person. They're done by a team of people.",
-            // "Coming together is a beginning, staying together is progress, and working together is success.",
-            // "Alone we can do so little; together we can do so much.",
-            // "The strength of the team is each individual member. The strength of each member is the team.",
-            // "If everyone is moving forward together, then success takes care of itself.",
-            // "Teamwork begins by building trust. And the only way to do that is to overcome our need for invulnerability.",
-            // "Individually, we are one drop. Together, we are an ocean.",
-            // "The best teams have chemistry. They communicate well and respond to each other instinctively.",
-            // "Collaboration allows us to know more than we are capable of knowing by ourselves."
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshStandardMaterial({ color: 0x00ffff });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        const light = new THREE.PointLight(0x00ffff, 1, 100);
+        light.position.set(50, 50, 50);
+        scene.add(light);
+
+        camera.position.z = 5;
+
+        function animateThreeJS() {
+            requestAnimationFrame(animateThreeJS);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animateThreeJS();
+
+        // Update quotes
+        const quotes = [
+            "Great things in business are never done by one person. They're done by a team of people. - Steve Jobs"
         ];
 
-        const quotes1=[
+        const quotes1 = [
             "Coming together is a beginning, staying together is progress, and working together is success. - Henry Ford"
         ];
 
@@ -283,7 +292,6 @@
         document.getElementById('quote').textContent = getRandomQuote();
         document.getElementById('quote1').textContent = getRandomQuote1();
 
-       
         setInterval(() => {
             document.getElementById('quote').textContent = getRandomQuote();
         }, 10000);
