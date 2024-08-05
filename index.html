@@ -8,7 +8,7 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Verdana', sans-serif;
             background-color: #0c0c0c;
             color: #fff;
             cursor: none;
@@ -96,6 +96,25 @@
             50% { color: #ffff00; }
             75% { color: #00ff00; }
         }
+        .big-bold-green {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #0ff;
+            transition: color 0.3s, border 0.3s;
+        }
+        .big-bold-green:hover {
+            color: black;
+            /* border: 5px solid #0ff;  Neuron color */
+        }
+        @keyframes crazyAnimation {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            50% { transform: rotate(-2deg); }
+            75% { transform: rotate(1deg); }
+        }
+        .big-bold-green:hover {
+            animation: crazyAnimation 1s infinite;
+        }
     </style>
 </head>
 <body>
@@ -103,8 +122,7 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <div class="container">
-        <h1 class="float">Hi I'm Durgansh Dixit</h1>
-       
+        <h1 class="float big-bold-green">Hi, MY NAME IS DURGANSH</h1>
         <p>I'm passionate about making HUMAN LIKE COMPUTERS or COMPUTER LIKE HUMANS in next 25 years.</p>
         <p>You can connect with me at <a href="mailto:saniket919@gmail.com" class="accent color-change">saniket919@gmail.com</a></p>
         <p>Thank you for visiting my website.</p>
