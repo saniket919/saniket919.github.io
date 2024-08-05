@@ -123,6 +123,12 @@
             margin: 2rem 0;
             text-shadow: 0 0 3px #0ff;
         }
+        .quote1{
+             font-style: italic;
+            color: #0ff;
+            margin: 2rem 0;
+            text-shadow: 0 0 3px #0ff;
+            }
     </style>
 </head>
 <body>
@@ -135,6 +141,8 @@
         <div id="quote" class="quote"></div>
         
         <h2>Ready to Meet?</h2>
+
+        <div id="quote1" class="quote1"></div>
         
         <a href="https://meet.google.com/yhb-ieji-qsw" class="meet-button accent color-change" target="_blank">Join Google Meet</a>
     </div>
@@ -256,13 +264,22 @@
             // "Collaboration allows us to know more than we are capable of knowing by ourselves."
         ];
 
+        const quotes1=[
+            "Coming together is a beginning, staying together is progress, and working together is success. - Henry Ford"
+        ];
+
         function getRandomQuote() {
             return quotes[Math.floor(Math.random() * quotes.length)];
         }
 
-        document.getElementById('quote').textContent = getRandomQuote();
+        function getRandomQuote1() {
+            return quotes1[Math.floor(Math.random() * quotes.length)];
+        }
 
-        // Change quote every 10 seconds
+        document.getElementById('quote').textContent = getRandomQuote();
+        document.getElementById('quote1').textContent = getRandomQuote1();
+
+       
         setInterval(() => {
             document.getElementById('quote').textContent = getRandomQuote();
         }, 10000);
