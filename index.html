@@ -157,6 +157,21 @@
         .light-mode .article-section {
             background-color: var(--light-card);
         }
+        .partnership-highlight {
+            display: inline-block;
+            animation: highlight-pulse 2s infinite;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #1a1a1a;
+            background-color: #fff176;
+        }
+
+        /* Light mode specific highlight */
+        .light-mode .partnership-highlight {
+            background-color: #fff176;
+            color: #1a1a1a;
+        }
 
         @media (max-width: 768px) {
             .grid {
@@ -171,7 +186,7 @@
     <div class="container">
         <header>
             <h1>BeyondBrain</h1>
-            <p>Augmenting Human Intelligence through Cutting-Edge AI Research now in partnership with Microsoft</p>
+            <p>Augmenting Human Intelligence through Cutting-Edge AI Research <span class="partnership-highlight">now in partnership with Microsoft</span></p>
         </header>
 
         <section>
