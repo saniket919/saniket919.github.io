@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeyondBrain - AI Intelligence Augmentation</title>
+    <style>
+        :root {
+            --dark-bg: #0a192f;
+            --dark-text: #c6d1f0;
+            --dark-accent: #64ffda;
+            --dark-card: #112240;
+            
+            --light-bg: #f0f4f8;
+            --light-text: #1a2b3c;
+            --light-accent: #0a192f;
+            --light-card: #e6f1ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+            line-height: 1.6;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--dark-card);
+            color: var(--dark-accent);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 100;
+            font-size: 16px;
+        }
+
+        .light-mode .theme-toggle {
+            background-color: var(--light-card);
+            color: var(--light-accent);
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--dark-accent);
+            margin-bottom: 15px;
+        }
+
+        .light-mode header h1 {
+            color: var(--light-accent);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark-accent);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .light-mode .section-title {
+            color: var(--light-accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--dark-card);
+            padding: 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .light-mode .card {
+            background-color: var(--light-card);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--dark-card);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .light-mode .modal-content {
+            background-color: var(--light-card);
+        }
+
+        .close-modal {
+            background-color: var(--dark-accent);
+            color: var(--dark-bg);
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .light-mode .close-modal {
+            background-color: var(--light-accent);
+            color: var(--light-bg);
+        }
+
+        .article-section {
+            background-color: var(--dark-card);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .light-mode .article-section {
+            background-color: var(--light-card);
+        }
+        .partnership-highlight {
+            display: inline-block;
+            animation: highlight-pulse 2s infinite;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #1a1a1a;
+            background-color: #fff176;
+        }
+
+        /* Light mode specific highlight */
+        .light-mode .partnership-highlight {
+            background-color: #fff176;
+            color: #1a1a1a;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle">🌓</button>
+
+    <div class="container">
+        <header>
+            <h1>BeyondBrain</h1>
+            <p>Augmenting Human Intelligence through Cutting-Edge AI Research <span class="partnership-highlight">now in partnership with Microsoft</span></p>
+        </header>
+
+        <section>
+            <h2 class="section-title">Enhancing Human Intelligence through <br> Artificial General Intelligence</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Cognitive Amplification</h3>
+                    <p>AI algorithms that enhance learning speed, memory retention, and problem-solving capabilities.</p>
+                </div>
+                <div class="card">
+                    <h3>Cognitive Prosthetic</h3>
+                    <p>An advanced cognitive interface that can
+
+                        rapidly analyze gaps in human reasoning
+                        and deliver real-time learning enhancements
+                        Tailor personalized learning pathways for optimal knowledge retention.</p>
+                </div>
+                <div class="card" id="product-card">
+                    <h3>Our Products</h3>
+                    <p>Click to learn more about our product</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2 class="section-title">Our Vision</h2>
+            <p>At BeyondBrain, we see Artificial General Intelligence (AGI) not as a threat, but as the ultimate collaborative tool for human cognitive enhancement. Unlike narrow AI systems that excel at specific tasks, AGI represents a transformative technology capable of understanding, learning, and applying intelligence across diverse domains.</p>
+            
+            <h3 style="color: var(--dark-accent); margin: 20px 0 10px;">Cognitive Amplification Strategies</h3>
+            <p>Our research focuses on developing AI systems that don't replace human intelligence, but dramatically expand its capabilities. We envision AI as a cognitive prosthetic—an intelligent interface that can:</p>
+            
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>Instantly process and synthesize complex information</li>
+                <li>Identify cognitive blind spots in human reasoning</li>
+                <li>Provide real-time learning optimization</li>
+                <li>Create personalized knowledge absorption pathways</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2 class="section-title">The Technological Singularity: A Nuanced Perspective</h2>
+            <p>The technological singularity represents a hypothetical point where artificial intelligence surpasses human intellectual capacity, potentially triggering rapid, unpredictable technological growth. At BeyondBrain, we approach this concept with a balanced, ethical framework.</p>
+            
+            <p>Rather than viewing the singularity as an apocalyptic event, we see it as a collaborative evolutionary step. Our research aims to ensure that AGI development remains aligned with human values, prioritizing symbiotic intelligence over replacement.</p>
+            
+            <h3 style="color: var(--dark-accent); margin: 20px 0 10px;">Ethical AI Development Principles</h3>
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>Transparent and interpretable AI systems</li>
+                <li>Human-centric design prioritizing augmentation</li>
+                <li>Robust ethical constraints and value alignment</li>
+                <li>Continuous human oversight and intervention mechanisms</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2 class="section-title">How our Technology Increase Human Intelligence</h2>
+            <p>Our cutting-edge AI technologies are designed to systematically expand human cognitive capabilities through multifaceted approaches:</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Neural Plasticity Enhancement</h3>
+                    <p>By analyzing individual learning patterns, our AI can generate personalized cognitive training protocols that optimize neural connections, accelerating skill acquisition and knowledge retention.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Cognitive Pattern Recognition</h3>
+                    <p>Advanced machine learning algorithms can identify subtle cognitive patterns, helping individuals understand their unique thinking processes, biases, and potential areas of intellectual growth.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Real-time Intellectual Augmentation</h3>
+                    <p>Imagine an AI companion that provides contextual insights, suggests alternative perspectives, and helps break through cognitive barriers during problem-solving and creative processes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Our Team</h2>
+            <div class="card" style="text-align: center;">
+                <h3></h3>
+                <p></p>
+                <p>Having Co-Founders from diverse backgrounds like neuroscience and ai, our team is expanded globally from United Kingdom to the United States and India.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <h2>Wow!!!</h2>
+            <p>Good to know that you are interested in our products, Don't worry our Engineers are working day and night sitting on Himalayan peak in a isolated place to make the best product in the world.</p>
+            <button class="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('light-mode');
+        });
+
+        // Product Modal
+        const productCard = document.getElementById('product-card');
+        const productModal = document.getElementById('product-modal');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        productCard.addEventListener('click', function() {
+            productModal.style.display = 'flex';
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            productModal.style.display = 'none';
+        });
+
+        productModal.addEventListener('click', function(event) {
+            if (event.target === productModal) {
+                productModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
