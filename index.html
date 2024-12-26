@@ -85,12 +85,18 @@
             border-bottom: 1px solid rgba(0, 255, 140, 0.2);
         }
 
-        header h1 {
-            font-size: 4rem;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-            animation: neonPulse 2s infinite;
-        }
+header h1 {
+    font-size: 4rem;
+    color: var(--text-primary); /* Text color */
+    margin-bottom: 15px;
+    animation: neonPulse 1s infinite;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.6), /* Shadow for stroke effect */
+        -2px -2px 4px rgba(0, 0, 0, 0.6), 
+        2px -2px 4px rgba(0, 0, 0, 0.6), 
+        -2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
 
         .section-title {
             font-size: 2.5rem;
