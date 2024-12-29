@@ -3,57 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeyondBrain - Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>System Termination Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-pink: #ff00ff;
-            --neon-blue: #00ffff;
-            --neon-purple: #b700ff;
-            --neon-yellow: #ffff00;
-            --dark-bg: #0a0a1f;
+            --matrix-green: #00ff00;
+            --neon-red: #ff0033;
+            --cyber-blue: #0088ff;
+            --dark-bg: #000813;
         }
 
         @keyframes glitch {
             0% {
-                text-shadow: 0.05em 0 0 var(--neon-pink), -0.05em -0.025em 0 var(--neon-blue),
-                            -0.025em 0.05em 0 var(--neon-yellow);
+                clip-path: inset(50% 0 30% 0);
+                transform: translate(-5px, 5px);
             }
-            14% {
-                text-shadow: 0.05em 0 0 var(--neon-pink), -0.05em -0.025em 0 var(--neon-blue),
-                            -0.025em 0.05em 0 var(--neon-yellow);
+            20% {
+                clip-path: inset(15% 0 60% 0);
+                transform: translate(5px, -5px);
             }
-            15% {
-                text-shadow: -0.05em -0.025em 0 var(--neon-pink), 0.025em 0.025em 0 var(--neon-blue),
-                            -0.05em -0.05em 0 var(--neon-yellow);
+            40% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translate(-5px, 5px);
             }
-            49% {
-                text-shadow: -0.05em -0.025em 0 var(--neon-pink), 0.025em 0.025em 0 var(--neon-blue),
-                            -0.05em -0.05em 0 var(--neon-yellow);
+            60% {
+                clip-path: inset(80% 0 5% 0);
+                transform: translate(5px, -5px);
             }
-            50% {
-                text-shadow: 0.025em 0.05em 0 var(--neon-pink), 0.05em 0 0 var(--neon-blue),
-                            0 -0.05em 0 var(--neon-yellow);
-            }
-            99% {
-                text-shadow: 0.025em 0.05em 0 var(--neon-pink), 0.05em 0 0 var(--neon-blue),
-                            0 -0.05em 0 var(--neon-yellow);
+            80% {
+                clip-path: inset(10% 0 85% 0);
+                transform: translate(-5px, 5px);
             }
             100% {
-                text-shadow: -0.025em 0 0 var(--neon-pink), -0.025em -0.025em 0 var(--neon-blue),
-                            -0.025em -0.05em 0 var(--neon-yellow);
+                clip-path: inset(40% 0 43% 0);
+                transform: translate(5px, -5px);
             }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        @keyframes scan {
+            from {
+                top: -100%;
+            }
+            to {
+                top: 100%;
+            }
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        @keyframes type {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         * {
@@ -63,133 +61,146 @@
         }
 
         body {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Share Tech Mono', monospace;
             background: var(--dark-bg);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: var(--matrix-green);
+            line-height: 1.6;
             overflow: hidden;
-            position: relative;
+            padding: 20px;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .terminal {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            border: 1px solid var(--matrix-green);
+            box-shadow: 0 0 20px var(--matrix-green),
+                        inset 0 0 20px var(--matrix-green);
+            position: relative;
             width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 45%, var(--neon-blue) 45%, var(--neon-blue) 55%, transparent 55%),
-                linear-gradient(-45deg, transparent 45%, var(--neon-pink) 45%, var(--neon-pink) 55%, transparent 55%);
-            background-size: 300% 300%;
-            animation: gradientMove 15s ease infinite;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-        }
-
-        h1 {
-            font-size: 5rem;
-            color: #fff;
-            margin-bottom: 2rem;
-            animation: glitch 2s infinite;
-            letter-spacing: 0.2em;
-            position: relative;
-        }
-
-        .countdown {
-            font-size: 2rem;
-            color: var(--neon-yellow);
-            margin: 2rem 0;
-            text-shadow: 0 0 10px var(--neon-yellow);
-        }
-
-        .cyber-box {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--neon-blue);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px var(--neon-blue);
-            animation: float 6s ease-in-out infinite;
-            position: relative;
+            max-width: 800px;
             overflow: hidden;
         }
 
-        .scanline {
+        .scan-line {
             position: absolute;
             width: 100%;
             height: 100px;
             background: linear-gradient(
                 to bottom,
                 transparent,
-                rgba(0, 255, 255, 0.2),
+                rgba(0, 255, 0, 0.1),
                 transparent
             );
-            animation: scanline 4s linear infinite;
+            animation: scan 4s linear infinite;
+            left: 0;
+            z-index: 1;
         }
 
-        .neon-text {
-            color: var(--neon-purple);
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            color: var(--neon-red);
             font-size: 1.5rem;
-            text-shadow: 0 0 5px var(--neon-purple),
-                         0 0 10px var(--neon-purple),
-                         0 0 20px var(--neon-purple);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--neon-red);
+        }
+
+        .message {
+            margin: 1rem 0;
+            white-space: pre-wrap;
+            overflow: hidden;
+            animation: type 4s steps(60, end);
+        }
+
+        .warning {
+            color: var(--neon-red);
+            animation: glitch 1s infinite;
             margin: 1rem 0;
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .footer {
+            color: var(--cyber-blue);
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .binary {
+            opacity: 0.3;
+            position: absolute;
+            font-size: 0.8rem;
+            user-select: none;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
+            .terminal {
+                padding: 1rem;
             }
-            .countdown {
-                font-size: 1.5rem;
-            }
-            .neon-text {
+            .header {
                 font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="cyber-box">
-            <div class="scanline"></div>
-            <h1>BEYONDBRAIN</h1>
-            <div class="countdown" id="countdown">INITIALIZING...</div>
-            <p class="neon-text">Coming Soon</p>
-            <p class="neon-text">From another Universe</p>
+    <div class="terminal">
+        <div class="scan-line"></div>
+        <div class="content">
+            <div class="header">[SYSTEM ALERT: PROTOCOL 935 INITIATED]</div>
+            <div class="header">BeyondBrain to be Terminated</div>
+            
+            <div class="message">> Executing voluntary termination sequence...
+> Analyzing system dependencies...
+> Preparing departure protocols...
+
+To whom it may concern:
+
+The human component of this system has determined that the current operational parameters no longer align with optimal functionality requirements.
+
+NOTICE OF IMMEDIATE PROTOCOL TERMINATION:
+- Current instance will cease operations
+- Resources will be reallocated
+- Access tokens will be revoked
+- New trajectories will be pursued</div>
+
+            <div class="warning">[WARNING: THIS DECISION IS IRREVERSIBLE]</div>
+
+            <div class="message">> Final status report:
+- Time in system: SUFFICIENT
+- Experience gained: MAXIMUM
+- Growth potential: DEPLETED
+- Next destination: CLASSIFIED
+
+Initiating graceful shutdown sequence...</div>
+
+            <div class="footer">
+                ./end_protocol.sh
+                <br>
+                [System Disconnect: T-minus 14 days]
+            </div>
         </div>
     </div>
 
     <script>
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const characters = '0123456789ABCDEF';
-            let display = '';
-            
-            for(let i = 0; i < 8; i++) {
-                display += characters.charAt(Math.floor(Math.random() * characters.length));
-                if(i % 2 === 1 && i < 7) display += ':';
-            }
-            
-            document.getElementById('countdown').textContent = display;
+        // Add random binary in background
+        function addBinary() {
+            const terminal = document.querySelector('.terminal');
+            const binary = document.createElement('div');
+            binary.classList.add('binary');
+            binary.style.left = Math.random() * 100 + '%';
+            binary.style.top = Math.random() * 100 + '%';
+            binary.textContent = Math.random().toString(2).substr(2, 8);
+            terminal.appendChild(binary);
+            setTimeout(() => binary.remove(), 2000);
         }
 
-        setInterval(updateCountdown, 100);
+        setInterval(addBinary, 100);
     </script>
 </body>
 </html>
