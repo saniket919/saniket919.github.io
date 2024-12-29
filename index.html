@@ -83,9 +83,9 @@
         <p class="message">
             The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
-        <pre>
+        <pre id="httpHeader">
 HTTP/1.0 404 Not Found
-Date: Sun, 29 Dec 2024 12:00:00 GMT
+Date: Loading...
 Server: Apache/2.4.41 (Unix)
 Content-Type: text/html; charset=utf-8
 Connection: close</pre>
@@ -96,8 +96,33 @@ Connection: close</pre>
         <hr>
         <p class="details">
             Error Code: 404 | Document Not Found<br>
-            Web Server at beyondbrain.org
+            Web Server at example.com
         </p>
     </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            const formattedDate = `${days[now.getUTCDay()]}, ${now.getUTCDate()} ${months[now.getUTCMonth()]} ${now.getUTCFullYear()} ${
+                String(now.getUTCHours()).padStart(2, '0')}:${
+                String(now.getUTCMinutes()).padStart(2, '0')}:${
+                String(now.getUTCSeconds()).padStart(2, '0')} GMT`;
+
+            const headerText = `HTTP/1.0 404 Not Found
+Date: ${formattedDate}
+Server: Apache/2.4.41 (Unix)
+Content-Type: text/html; charset=utf-8
+Connection: close`;
+
+            document.getElementById('httpHeader').textContent = headerText;
+        }
+
+        // Update immediately and then every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
 </body>
 </html>
