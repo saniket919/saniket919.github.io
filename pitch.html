@@ -135,52 +135,8 @@
     </div>
     <div class="access-granted" id="accessGrantedMessage">Access Granted!</div>
 
-    <script>
-        const challengeText = document.getElementById('challengeText');
-        const captchaInput = document.getElementById('captchaInput');
-        const accessKeyInput = document.getElementById('accessKey');
-        const accessGrantedMessage = document.getElementById('accessGrantedMessage');
-
-        let currentSolution;
-
-        function generateChallenge() {
-            const num1 = Math.floor(Math.random() * 100);
-            const num2 = Math.floor(Math.random() * 100);
-            const operators = ['+',  '*'];
-            const operator = operators[Math.floor(Math.random() * operators.length)];
-
-            let question;
-            switch (operator) {
-                case '+':
-                    question = `What is ${num1} + ${num2}?`;
-                    currentSolution = num1 + num2;
-                    break;
-                
-                case '*':
-                    question = `What is ${num1} x ${num2}?`;
-                    currentSolution = num1 * num2;
-                    break;
-
-                
-            }
-            return question;
-        }
-
-        challengeText.textContent = generateChallenge();
-
-        function validateAccess() {
-            const captchaValue = captchaInput.value.trim();
-            const accessKeyValue = accessKeyInput.value.trim();
-
-            if (parseInt(captchaValue) === currentSolution && accessKeyValue == "bb-v56ruc4e5y78vxw3456--access") {
-                accessGrantedMessage.style.display = 'block';
-                setTimeout(() => {
-                    window.location.href = `./${accessKeyValue}.html`;
-                }, 3000);
-            } else {
-                alert("Invalid captcha or access key. Please try again.");
-            }
-        }
+<script>
+const _0x4f14c8=_0x20c6;(function(_0x386842,_0x76d0b6){const _0xc73571=_0x20c6,_0x3f12f1=_0x386842();while(!![]){try{const _0x4a1dbe=-parseInt(_0xc73571(0x15c))/(-0x6*-0x3df+0x3b6+0x23*-0xc5)*(-parseInt(_0xc73571(0x15b))/(0x23c2+0x5e*-0x2f+-0x127e))+parseInt(_0xc73571(0x182))/(-0x2379+0x19a8+0x11*0x94)+-parseInt(_0xc73571(0x161))/(0xb52+-0x1787+0xc39)*(parseInt(_0xc73571(0x154))/(0x2401+0x1*-0x138f+-0x5*0x349))+-parseInt(_0xc73571(0x183))/(-0x152*-0x4+0x13c6+-0x42c*0x6)*(parseInt(_0xc73571(0x167))/(-0x180b+0x267d+-0xe6b*0x1))+parseInt(_0xc73571(0x174))/(0x1a56+-0x1f42*-0x1+-0x3990)+parseInt(_0xc73571(0x15f))/(-0x961+0x9a*-0x7+0x10*0xda)+-parseInt(_0xc73571(0x160))/(0x166c+-0xb*-0x115+-0x2249)*(parseInt(_0xc73571(0x16d))/(-0xf4+0x12a+-0x2b));if(_0x4a1dbe===_0x76d0b6)break;else _0x3f12f1['push'](_0x3f12f1['shift']());}catch(_0x56b242){_0x3f12f1['push'](_0x3f12f1['shift']());}}}(_0x35a9,0x37cfa+-0x3a4c3+0xe9fab));function _0x35a9(){const _0x3f6dbd=['y\x20again.','.html','random','ById','EBGqV','accessGran','7053112YzebWl','56--access','accessKey','trim','block','ccess\x20key.','bb-v56ruc4','location','What\x20is\x20','\x20Please\x20tr','XbGPO','value','floor','length','1548354jCBKAT','178104dICzGR','knxTP','href','MfUEX','tsIVE','25osWIdL','style','textConten','getElement','ext','KKVYp','\x20+\x20','11398vbyfUC','307ZooInZ','tedMessage','captchaInp','9329922zDMJkP','20KfRYZv','1397176vjtKgF','ptcha\x20or\x20a','xbuiM','LTTsy','e5y78vxw34','Invalid\x20ca','70RnmYUt','challengeT','\x20x\x20','display','oGLFc','ElNuq','6558772qhxmpT'];_0x35a9=function(){return _0x3f6dbd;};return _0x35a9();}const challengeText=document[_0x4f14c8(0x157)+_0x4f14c8(0x171)](_0x4f14c8(0x168)+_0x4f14c8(0x158)),captchaInput=document[_0x4f14c8(0x157)+_0x4f14c8(0x171)](_0x4f14c8(0x15e)+'ut'),accessKeyInput=document[_0x4f14c8(0x157)+_0x4f14c8(0x171)](_0x4f14c8(0x176)),accessGrantedMessage=document[_0x4f14c8(0x157)+_0x4f14c8(0x171)](_0x4f14c8(0x173)+_0x4f14c8(0x15d));let currentSolution;function generateChallenge(){const _0x1e51f6=_0x4f14c8,_0x43b88c={'MfUEX':function(_0x4de554,_0x57d660){return _0x4de554*_0x57d660;},'oGLFc':function(_0x4ccc0a,_0x161394){return _0x4ccc0a+_0x161394;},'LTTsy':function(_0x155e49,_0x4df47f){return _0x155e49*_0x4df47f;}},_0x161544=Math[_0x1e51f6(0x180)](_0x43b88c[_0x1e51f6(0x186)](Math[_0x1e51f6(0x170)](),-0x19d+0x1*0xfd9+-0xdd8)),_0x981a4e=Math[_0x1e51f6(0x180)](_0x43b88c[_0x1e51f6(0x186)](Math[_0x1e51f6(0x170)](),-0x20e7+-0x1354+-0x349f*-0x1)),_0x21ccac=['+','*'],_0x265c3b=_0x21ccac[Math[_0x1e51f6(0x180)](_0x43b88c[_0x1e51f6(0x186)](Math[_0x1e51f6(0x170)](),_0x21ccac[_0x1e51f6(0x181)]))];let _0x4060d1;switch(_0x265c3b){case'+':_0x4060d1=_0x1e51f6(0x17c)+_0x161544+_0x1e51f6(0x15a)+_0x981a4e+'?',currentSolution=_0x43b88c[_0x1e51f6(0x16b)](_0x161544,_0x981a4e);break;case'*':_0x4060d1=_0x1e51f6(0x17c)+_0x161544+_0x1e51f6(0x169)+_0x981a4e+'?',currentSolution=_0x43b88c[_0x1e51f6(0x164)](_0x161544,_0x981a4e);break;}return _0x4060d1;}function _0x20c6(_0x30d464,_0x38b1a6){const _0x37a5b8=_0x35a9();return _0x20c6=function(_0x3a67a8,_0xe070a5){_0x3a67a8=_0x3a67a8-(-0x25*0x53+-0x1045+0x1d98);let _0x43054f=_0x37a5b8[_0x3a67a8];return _0x43054f;},_0x20c6(_0x30d464,_0x38b1a6);}challengeText[_0x4f14c8(0x156)+'t']=generateChallenge();function validateAccess(){const _0x4b0255=_0x4f14c8,_0x1a3e87={'xbuiM':function(_0x1ac668,_0x26573d){return _0x1ac668===_0x26573d;},'knxTP':function(_0x15051a,_0x1504ac){return _0x15051a(_0x1504ac);},'ElNuq':function(_0x2685db,_0x522c0d){return _0x2685db==_0x522c0d;},'KKVYp':_0x4b0255(0x17a)+_0x4b0255(0x165)+_0x4b0255(0x175),'EBGqV':_0x4b0255(0x178),'tsIVE':function(_0x36deab,_0x32bbae,_0xa8b387){return _0x36deab(_0x32bbae,_0xa8b387);},'XbGPO':_0x4b0255(0x166)+_0x4b0255(0x162)+_0x4b0255(0x179)+_0x4b0255(0x17d)+_0x4b0255(0x16e)},_0x7547d=captchaInput[_0x4b0255(0x17f)][_0x4b0255(0x177)](),_0x394b2f=accessKeyInput[_0x4b0255(0x17f)][_0x4b0255(0x177)]();_0x1a3e87[_0x4b0255(0x163)](_0x1a3e87[_0x4b0255(0x184)](parseInt,_0x7547d),currentSolution)&&_0x1a3e87[_0x4b0255(0x16c)](_0x394b2f,_0x1a3e87[_0x4b0255(0x159)])?(accessGrantedMessage[_0x4b0255(0x155)][_0x4b0255(0x16a)]=_0x1a3e87[_0x4b0255(0x172)],_0x1a3e87[_0x4b0255(0x187)](setTimeout,()=>{const _0x479af2=_0x4b0255;window[_0x479af2(0x17b)][_0x479af2(0x185)]='./'+_0x394b2f+_0x479af2(0x16f);},0x181*-0x6+-0x11c8+-0x1343*-0x2)):_0x1a3e87[_0x4b0255(0x184)](alert,_0x1a3e87[_0x4b0255(0x17e)]);}
     </script>
 </body>
 
