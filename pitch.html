@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeyondBrain.org - Access Key</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Theme styles here */
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #2dd4bf;
+            --background: #0f172a;
+            --text: #f8fafc;
+            --card: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .challenge {
+            margin: 1rem 0;
+            font-size: 1.25rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 2px solid var(--primary);
+            border-radius: 0.5rem;
+            background: var(--background);
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: var(--text);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: var(--secondary);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 25%, rgba(45, 212, 191, 0.15) 50%, transparent 70%);
+            z-index: -1;
+        }
+
+        .access-granted {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent);
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+            display: none;
+            animation: fadeInOut 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gradient-bg"></div>
+    <div class="container">
+        <h1>Access Key Required</h1>
+        <div class="challenge" id="challengeText"></div>
+        <input type="text" id="captchaInput" placeholder="Solve the challenge" />
+        <input type="password" id="accessKey" placeholder="Enter your access key" />
+        <button onclick="validateAccess()">Submit</button>
+    </div>
+    <div class="access-granted" id="accessGrantedMessage">Access Granted!</div>
+
+    <script>
+        const challengeText = document.getElementById('challengeText');
+        const captchaInput = document.getElementById('captchaInput');
+        const accessKeyInput = document.getElementById('accessKey');
+        const accessGrantedMessage = document.getElementById('accessGrantedMessage');
+
+        let currentSolution;
+
+        function generateChallenge() {
+            const num1 = Math.floor(Math.random() * 100);
+            const num2 = Math.floor(Math.random() * 100);
+            const operators = ['+',  '*'];
+            const operator = operators[Math.floor(Math.random() * operators.length)];
+
+            let question;
+            switch (operator) {
+                case '+':
+                    question = `What is ${num1} + ${num2}?`;
+                    currentSolution = num1 + num2;
+                    break;
+                
+                case '*':
+                    question = `What is ${num1} x ${num2}?`;
+                    currentSolution = num1 * num2;
+                    break;
+
+                
+            }
+            return question;
+        }
+
+        challengeText.textContent = generateChallenge();
+
+        function validateAccess() {
+            const captchaValue = captchaInput.value.trim();
+            const accessKeyValue = accessKeyInput.value.trim();
+
+            if (parseInt(captchaValue) === currentSolution && accessKeyValue == "bb-v56ruc4e5y78vxw3456--access") {
+                accessGrantedMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = `./${accessKeyValue}.html`;
+                }, 3000);
+            } else {
+                alert("Invalid captcha or access key. Please try again.");
+            }
+        }
+    </script>
+</body>
+
+</html>
