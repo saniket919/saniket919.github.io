@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page</title>
+    <style>
+        #hidden-message {
+            opacity: 0;
+            transition: opacity 0.5s;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+        }
+        body:hover #hidden-message {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body onclick="document.body.style.backgroundColor = getRandomColor();" onmousemove="createTrail(event)">
+    <div id="hidden-message">Welcome to My Website</div>
+    <script>
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        function createTrail(event) {
+            let trail = document.createElement('div');
+            trail.style.position = 'absolute';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.backgroundColor = 'black';
+            trail.style.borderRadius = '50%';
+            trail.style.left = event.pageX + 'px';
+            trail.style.top = event.pageY + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 500);
+        }
+    </script>
+</body>
+</html>
