@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotlight Portfolio</title>
+    <title>Neon Spotlight Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -31,7 +31,6 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
             pointer-events: none;
         }
         
@@ -44,12 +43,26 @@
             font-weight: 700;
             letter-spacing: 2px;
             margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #0ff,
+                0 0 10px #0ff,
+                0 0 20px #0ff,
+                0 0 40px #0ff;
+            animation: flicker 3s infinite alternate;
         }
         
         .title {
             font-size: 2.5vw;
             font-weight: 300;
             letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #f0f,
+                0 0 10px #f0f,
+                0 0 20px #f0f,
+                0 0 40px #f0f;
+            animation: glow 4s infinite alternate;
         }
         
         #spotlight {
@@ -57,22 +70,30 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: transparent;
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.99);
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(0, 255, 255, 0.05) 50%,
+                transparent 70%
+            );
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.97);
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 2;
+            border: 2px solid rgba(0, 255, 255, 0.3);
         }
         
         #cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid white;
+            border: 2px solid #0ff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 3;
+            box-shadow: 0 0 10px #0ff;
+            animation: pulse-cursor 1.5s infinite alternate;
         }
         
         #hint {
@@ -82,15 +103,73 @@
             text-align: center;
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.6);
-            animation: pulse 2s infinite;
+            text-shadow: 0 0 5px #0ff;
+            animation: pulse-hint 2s infinite;
             z-index: 3;
             pointer-events: none;
         }
         
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.4; }
+        /* Background grid effect */
+        .grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px) 0 0,
+                linear-gradient(0deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0 0;
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+        
+        /* Particle effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+        
+        @keyframes pulse-cursor {
+            0% { box-shadow: 0 0 5px #0ff; }
+            100% { box-shadow: 0 0 15px #0ff, 0 0 20px #f0f; }
+        }
+        
+        @keyframes pulse-hint {
+            0% { opacity: 0.4; text-shadow: 0 0 5px #0ff; }
+            50% { opacity: 0.8; text-shadow: 0 0 10px #0ff, 0 0 20px #f0f; }
+            100% { opacity: 0.4; text-shadow: 0 0 5px #0ff; }
+        }
+        
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 0.99;
+                text-shadow: 
+                    0 0 5px #0ff,
+                    0 0 10px #0ff,
+                    0 0 20px #0ff,
+                    0 0 40px #0ff;
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+                text-shadow: none;
+            }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #f0f, 0 0 10px #f0f; }
+            50% { text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f; }
+            100% { text-shadow: 0 0 5px #f0f, 0 0 10px #f0f; }
         }
         
         @media (max-width: 768px) {
@@ -114,10 +193,14 @@
     </style>
 </head>
 <body>
+    <div class="grid"></div>
+    <div class="particles" id="particles"></div>
+    
     <div id="content-container">
         <div id="content">
-            <div class="name">Durgansh Dixit</div>
-            <div class="title">_________________</div>
+            <div class="title">Hi I am</div>
+            <div class="name">Durgansh</div>
+            
         </div>
     </div>
 
@@ -131,12 +214,68 @@
             const spotlight = document.getElementById('spotlight');
             const cursor = document.getElementById('cursor');
             const hint = document.getElementById('hint');
+            const particlesContainer = document.getElementById('particles');
             
             // Set initial position off-screen
             spotlight.style.left = '-100px';
             spotlight.style.top = '-100px';
             cursor.style.left = '-100px';
             cursor.style.top = '-100px';
+            
+            // Create particles
+            function createParticles() {
+                const numberOfParticles = 50;
+                
+                for (let i = 0; i < numberOfParticles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random position
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    
+                    // Random size
+                    const size = Math.random() * 3;
+                    
+                    // Random color (cyan or magenta)
+                    const colors = ['rgba(0, 255, 255, ', 'rgba(255, 0, 255, '];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const opacity = (Math.random() * 0.5) + 0.1;
+                    
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.backgroundColor = `${color}${opacity})`;
+                    
+                    // Add glow effect
+                    particle.style.boxShadow = `0 0 ${size * 2}px ${color}1)`;
+                    
+                    particlesContainer.appendChild(particle);
+                    
+                    // Animate
+                    animateParticle(particle);
+                }
+            }
+            
+            function animateParticle(particle) {
+                const duration = Math.random() * 5000 + 3000; // 3-8 seconds
+                const targetX = Math.random() * window.innerWidth;
+                const targetY = Math.random() * window.innerHeight;
+                
+                particle.animate([
+                    { left: particle.style.left, top: particle.style.top },
+                    { left: `${targetX}px`, top: `${targetY}px` }
+                ], {
+                    duration: duration,
+                    easing: 'ease-in-out',
+                    fill: 'forwards'
+                }).onfinish = () => {
+                    particle.style.left = `${targetX}px`;
+                    particle.style.top = `${targetY}px`;
+                    animateParticle(particle);
+                };
+            }
             
             // Handle mouse movement
             document.addEventListener('mousemove', function(e) {
@@ -148,12 +287,46 @@
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
                 
+                // Add trail effect (optional)
+                createTrailEffect(e.clientX, e.clientY);
+                
                 // Hide hint after first mouse movement
                 if (hint.style.opacity !== '0') {
                     hint.style.opacity = '0';
                     hint.style.transition = 'opacity 0.5s ease';
                 }
             });
+            
+            // Create trail effect
+            function createTrailEffect(x, y) {
+                const trail = document.createElement('div');
+                trail.classList.add('particle');
+                trail.style.left = `${x}px`;
+                trail.style.top = `${y}px`;
+                trail.style.width = '4px';
+                trail.style.height = '4px';
+                
+                // Random cyan or magenta
+                const colors = ['rgba(0, 255, 255, ', 'rgba(255, 0, 255, '];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                trail.style.backgroundColor = `${color}0.7)`;
+                trail.style.boxShadow = `0 0 5px ${color}1)`;
+                
+                particlesContainer.appendChild(trail);
+                
+                // Fade out
+                setTimeout(() => {
+                    trail.style.transition = 'all 1s';
+                    trail.style.opacity = '0';
+                    trail.style.transform = 'scale(0.5)';
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        particlesContainer.removeChild(trail);
+                    }, 1000);
+                }, 10);
+            }
             
             // Handle touch movement for mobile
             document.addEventListener('touchmove', function(e) {
@@ -173,6 +346,9 @@
                     hint.style.opacity = '0';
                     hint.style.transition = 'opacity 0.5s ease';
                 }
+                
+                // Add trail effect (optional)
+                createTrailEffect(touch.clientX, touch.clientY);
             }, { passive: false });
             
             // Make sure spotlight size matches CSS
@@ -189,6 +365,9 @@
             // Run on load and resize
             window.addEventListener('resize', adjustSpotlightSize);
             adjustSpotlightSize();
+            
+            // Create initial particles
+            createParticles();
         });
     </script>
 </body>
