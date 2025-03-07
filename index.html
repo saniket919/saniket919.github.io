@@ -3,42 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Page</title>
+    <title>Spotlight Portfolio</title>
     <style>
-        #hidden-message {
-            opacity: 0;
-            transition: opacity 0.5s;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-family: Arial, sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body:hover #hidden-message {
-            opacity: 1;
+        
+        body, html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            background-color: #000;
+            cursor: none;
+        }
+        
+        #content-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            pointer-events: none;
+        }
+        
+        #content {
+            z-index: 1;
+        }
+        
+        .name {
+            font-size: 5vw;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .title {
+            font-size: 2.5vw;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        #spotlight {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.99);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        #hint {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: pulse 2s infinite;
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
+        }
+        
+        @media (max-width: 768px) {
+            #spotlight {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .name {
+                font-size: 8vw;
+            }
+            
+            .title {
+                font-size: 4vw;
+            }
+            
+            #hint {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
-<body onclick="document.body.style.backgroundColor = getRandomColor();" onmousemove="createTrail(event)">
-    <div id="hidden-message">Welcome to My Website</div>
+<body>
+    <div id="content-container">
+        <div id="content">
+            <div class="name">Durgansh Dixit</div>
+            <div class="title">_________________</div>
+        </div>
+    </div>
+
+    <div id="spotlight"></div>
+    <div id="cursor"></div>
+    
+    <div id="hint">Move cursor to reveal</div>
+    
     <script>
-        function getRandomColor() {
-            return '#' + Math.floor(Math.random()*16777215).toString(16);
-        }
-        
-        function createTrail(event) {
-            let trail = document.createElement('div');
-            trail.style.position = 'absolute';
-            trail.style.width = '10px';
-            trail.style.height = '10px';
-            trail.style.backgroundColor = 'black';
-            trail.style.borderRadius = '50%';
-            trail.style.left = event.pageX + 'px';
-            trail.style.top = event.pageY + 'px';
-            document.body.appendChild(trail);
-            setTimeout(() => trail.remove(), 500);
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const spotlight = document.getElementById('spotlight');
+            const cursor = document.getElementById('cursor');
+            const hint = document.getElementById('hint');
+            
+            // Set initial position off-screen
+            spotlight.style.left = '-100px';
+            spotlight.style.top = '-100px';
+            cursor.style.left = '-100px';
+            cursor.style.top = '-100px';
+            
+            // Handle mouse movement
+            document.addEventListener('mousemove', function(e) {
+                // Update spotlight position
+                spotlight.style.left = e.clientX + 'px';
+                spotlight.style.top = e.clientY + 'px';
+                
+                // Update cursor position
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Hide hint after first mouse movement
+                if (hint.style.opacity !== '0') {
+                    hint.style.opacity = '0';
+                    hint.style.transition = 'opacity 0.5s ease';
+                }
+            });
+            
+            // Handle touch movement for mobile
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                
+                const touch = e.touches[0];
+                
+                // Update spotlight position
+                spotlight.style.left = touch.clientX + 'px';
+                spotlight.style.top = touch.clientY + 'px';
+                
+                // Hide cursor on touch devices
+                cursor.style.display = 'none';
+                
+                // Hide hint after first touch movement
+                if (hint.style.opacity !== '0') {
+                    hint.style.opacity = '0';
+                    hint.style.transition = 'opacity 0.5s ease';
+                }
+            }, { passive: false });
+            
+            // Make sure spotlight size matches CSS
+            function adjustSpotlightSize() {
+                const style = window.getComputedStyle(spotlight);
+                const width = parseInt(style.width);
+                const height = parseInt(style.height);
+                
+                // Set same width/height to ensure circle
+                spotlight.style.width = `${width}px`;
+                spotlight.style.height = `${height}px`;
+            }
+            
+            // Run on load and resize
+            window.addEventListener('resize', adjustSpotlightSize);
+            adjustSpotlightSize();
+        });
     </script>
 </body>
 </html>
