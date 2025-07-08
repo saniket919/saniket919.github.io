@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeyondBrain - The New Era of Artifical Intelligence</title>
-    <!-- Add GSAP from CDN -->
+    <title>BeyondBrain - Making Humanity Smarter.</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -16,7 +15,7 @@
         }
         
         body {
-            background-color: #000;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 100%);
             color: #fff;
             height: 100vh;
             width: 100vw;
@@ -27,20 +26,107 @@
             position: relative;
         }
         
-        .neural-container {
+        .brain-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            max-width: 800px;
+            max-height: 600px;
+            z-index: 1;
+        }
+        
+        .brain-structure {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        
+        .brain-part {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Main brain lobes */
+        .frontal-lobe {
+            width: 40%;
+            height: 35%;
+            top: 15%;
+            left: 25%;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.4) 0%, rgba(52, 152, 219, 0.1) 100%);
+            border-radius: 60% 40% 40% 60%;
+            box-shadow: 0 0 40px rgba(52, 152, 219, 0.3);
+        }
+        
+        .parietal-lobe {
+            width: 35%;
+            height: 30%;
+            top: 20%;
+            right: 15%;
+            background: radial-gradient(circle, rgba(155, 89, 182, 0.4) 0%, rgba(155, 89, 182, 0.1) 100%);
+            border-radius: 40% 60% 60% 40%;
+            box-shadow: 0 0 40px rgba(155, 89, 182, 0.3);
+        }
+        
+        .temporal-lobe {
+            width: 30%;
+            height: 25%;
+            bottom: 25%;
+            left: 20%;
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.4) 0%, rgba(46, 204, 113, 0.1) 100%);
+            border-radius: 60% 40% 50% 70%;
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.3);
+        }
+        
+        .occipital-lobe {
+            width: 25%;
+            height: 20%;
+            bottom: 30%;
+            right: 20%;
+            background: radial-gradient(circle, rgba(230, 126, 34, 0.4) 0%, rgba(230, 126, 34, 0.1) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(230, 126, 34, 0.3);
+        }
+        
+        .cerebellum {
+            width: 20%;
+            height: 15%;
+            bottom: 15%;
+            right: 30%;
+            background: radial-gradient(circle, rgba(231, 76, 60, 0.4) 0%, rgba(231, 76, 60, 0.1) 100%);
+            border-radius: 40% 60% 80% 20%;
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+        }
+        
+        .brainstem {
+            width: 8%;
+            height: 30%;
+            bottom: 20%;
+            left: 48%;
+            background: radial-gradient(circle, rgba(241, 196, 15, 0.4) 0%, rgba(241, 196, 15, 0.1) 100%);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(241, 196, 15, 0.3);
+        }
+        
+        .neural-pathways {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 2;
         }
         
         .neuron {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background-color: rgba(52, 152, 219, 0.4);
+            width: 3px;
+            height: 3px;
+            background-color: rgba(52, 152, 219, 0.8);
             border-radius: 50%;
             box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
         }
@@ -49,7 +135,20 @@
             position: absolute;
             height: 1px;
             transform-origin: left center;
-            background: linear-gradient(90deg, rgba(52, 152, 219, 0.3), rgba(155, 89, 182, 0.3));
+            background: linear-gradient(90deg, 
+                rgba(52, 152, 219, 0.6), 
+                rgba(155, 89, 182, 0.4), 
+                rgba(52, 152, 219, 0.6));
+            box-shadow: 0 0 3px rgba(52, 152, 219, 0.4);
+        }
+        
+        .electrical-pulse {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
         .main-content {
@@ -57,31 +156,43 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            z-index: 10;
             text-align: center;
             padding: 2rem;
-        }
-        
-        .logo-container {
-            margin-bottom: 2rem;
-            opacity: 0;
+            position: relative;
         }
         
         .main-title {
-            font-size: min(18vw, 12rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            line-height: 0.9;
+            font-size: min(8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            line-height: 1;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #3498db, #9b59b6, #3498db);
-            background-size: 200% auto;
+            background: linear-gradient(90deg, #3498db, #9b59b6, #2ecc71, #3498db);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             opacity: 0;
             transform: scale(0.9);
-            animation: gradient 15s ease infinite;
+            animation: gradient 20s ease infinite;
             filter: blur(20px);
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-statement {
+            font-size: min(3vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
         }
         
         @keyframes gradient {
@@ -91,14 +202,14 @@
         }
         
         .coming-soon {
-            font-size: min(4vw, 1.5rem);
+            font-size: min(3vw, 1.2rem);
             font-weight: 300;
-            letter-spacing: 0.5em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.7);
-            margin-top: 2rem;
             opacity: 0;
             transform: translateY(20px);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         
         .animated-dots {
@@ -114,46 +225,11 @@
             opacity: 0;
         }
         
-        .dot:nth-child(1) {
-            background-color: #3498db;
-        }
+        .dot:nth-child(1) { background-color: #3498db; }
+        .dot:nth-child(2) { background-color: #9b59b6; }
+        .dot:nth-child(3) { background-color: #2ecc71; }
         
-        .dot:nth-child(2) {
-            background-color: #9b59b6;
-        }
-        
-        .dot:nth-child(3) {
-            background-color: #3498db;
-        }
-        
-        .brain-scan {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.8) 100%);
-            opacity: 0.5;
-            z-index: 0;
-            pointer-events: none;
-        }
-        
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                rgba(52, 152, 219, 0), 
-                rgba(52, 152, 219, 0.5), 
-                rgba(155, 89, 182, 0.5), 
-                rgba(52, 152, 219, 0));
-            top: 50%;
-            left: 0;
-            z-index: 0;
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
-            opacity: 0;
-            transform: scaleX(0);
-        }
+
         
         .footer {
             position: absolute;
@@ -163,6 +239,7 @@
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.4);
             opacity: 0;
+            z-index: 10;
         }
         
         .tagline {
@@ -173,103 +250,137 @@
             font-size: 0.9rem;
             font-weight: 300;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
             opacity: 0;
+            z-index: 10;
         }
+        
+
         
         @media (max-width: 768px) {
             .main-title {
-                font-size: 15vw;
+                font-size: 12vw;
+            }
+            
+            .mission-statement {
+                font-size: 4vw;
+                padding: 0 1rem;
             }
             
             .coming-soon {
                 font-size: 3.5vw;
-                letter-spacing: 0.3em;
+                letter-spacing: 0.2em;
+            }
+            
+            .brain-container {
+                width: 90vw;
+                height: 70vh;
             }
         }
     </style>
 </head>
 <body>
-    <div class="neural-container"></div>
-    <div class="brain-scan"></div>
-    <div class="scan-line"></div>
+    <div class="brain-container">
+        <div class="brain-structure">
+            <div class="brain-part frontal-lobe"></div>
+            <div class="brain-part parietal-lobe"></div>
+            <div class="brain-part temporal-lobe"></div>
+            <div class="brain-part occipital-lobe"></div>
+            <div class="brain-part cerebellum"></div>
+            <div class="brain-part brainstem"></div>
+        </div>
+        <div class="neural-pathways"></div>
+    </div>
     
-    <div class="tagline">BeyondBrain - The New Era of Artifical General Intelligence</div>
+    <div class="tagline">BeyondBrain - Making Humanity Smarter.</div>
     
     <div class="main-content">
-        <div class="main-title">BEYOND<br>BRAIN</div>
-        <div class="coming-soon">COMING SOON<span class="animated-dots">
+        <div class="main-title">BEYONDBRAIN</div>
+        <div class="mission-statement">Everyone deserves a brain that understands them. We're building it.</div>
+        <div class="coming-soon">Coming Soon<span class="animated-dots">
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
         </span></div>
     </div>
     
-    <div class="footer">&copy; 2025 BeyondBrain. All rights reserved.</div>
+    <div class="footer">&copy; © 2025 BeyondBrain. All rights reserved.</div>
     
     <script>
-        // Initialize GSAP
         gsap.registerPlugin(ScrollTrigger);
         
-        // Create neural network visualization
+        // Create neural network with brain structure awareness
         function createNeuralNetwork() {
-            const container = document.querySelector('.neural-container');
-            const neuronCount = 40; // More neurons for a denser network
+            const container = document.querySelector('.neural-pathways');
+            const neuronCount = 60;
             const neurons = [];
             
-            // Create neurons
+            // Define brain regions for neuron clustering
+            const brainRegions = [
+                { x: 45, y: 32, radius: 20, color: 'rgba(52, 152, 219, 0.8)' }, // frontal
+                { x: 68, y: 35, radius: 15, color: 'rgba(155, 89, 182, 0.8)' }, // parietal
+                { x: 35, y: 62, radius: 12, color: 'rgba(46, 204, 113, 0.8)' }, // temporal
+                { x: 72, y: 60, radius: 10, color: 'rgba(230, 126, 34, 0.8)' }, // occipital
+                { x: 70, y: 75, radius: 8, color: 'rgba(231, 76, 60, 0.8)' }, // cerebellum
+                { x: 52, y: 65, radius: 6, color: 'rgba(241, 196, 15, 0.8)' }  // brainstem
+            ];
+            
+            // Create neurons clustered around brain regions
             for (let i = 0; i < neuronCount; i++) {
                 const neuron = document.createElement('div');
                 neuron.classList.add('neuron');
                 
-                // Position throughout the viewport
-                const xPos = Math.random() * 100;
-                const yPos = Math.random() * 100;
-                neuron.style.left = `${xPos}%`;
-                neuron.style.top = `${yPos}%`;
+                // Choose a random brain region
+                const region = brainRegions[Math.floor(Math.random() * brainRegions.length)];
+                
+                // Position near the region with some randomness
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * region.radius;
+                const xPos = region.x + Math.cos(angle) * distance + (Math.random() - 0.5) * 10;
+                const yPos = region.y + Math.sin(angle) * distance + (Math.random() - 0.5) * 10;
+                
+                neuron.style.left = `${Math.max(0, Math.min(100, xPos))}%`;
+                neuron.style.top = `${Math.max(0, Math.min(100, yPos))}%`;
+                neuron.style.backgroundColor = region.color;
+                neuron.style.boxShadow = `0 0 12px ${region.color}`;
                 
                 container.appendChild(neuron);
                 neurons.push({
                     element: neuron,
                     x: xPos,
-                    y: yPos
+                    y: yPos,
+                    region: region
                 });
                 
-                // Subtle pulse animation
+                // Enhanced pulse animation
                 gsap.to(neuron, {
-                    boxShadow: '0 0 15px rgba(52, 152, 219, 0.8)',
-                    scale: Math.random() * 0.5 + 1.2,
-                    duration: Math.random() * 4 + 3,
+                    scale: Math.random() * 0.8 + 1.5,
+                    opacity: Math.random() * 0.5 + 0.5,
+                    duration: Math.random() * 3 + 2,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
-                    delay: Math.random() * 3
+                    delay: Math.random() * 2
                 });
             }
             
-            // Create synapses (connections between neurons)
+            // Create synapses between neurons
             for (let i = 0; i < neurons.length; i++) {
                 const neuron = neurons[i];
-                
-                // Connect to 2-4 other neurons
-                const connectionCount = Math.floor(Math.random() * 3) + 2;
+                const connectionCount = Math.floor(Math.random() * 4) + 2;
                 
                 for (let j = 0; j < connectionCount; j++) {
-                    // Find another neuron to connect to
                     const targetIndex = Math.floor(Math.random() * neurons.length);
                     if (targetIndex !== i) {
                         const target = neurons[targetIndex];
                         
-                        // Calculate distance and angle
                         const dx = target.x - neuron.x;
                         const dy = target.y - neuron.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Only connect if distance isn't too large
-                        if (distance < 30) {
+                        if (distance < 25) {
                             const angle = Math.atan2(dy, dx) * 180 / Math.PI;
                             
-                            // Create synapse line
                             const synapse = document.createElement('div');
                             synapse.classList.add('synapse');
                             synapse.style.width = `${distance}%`;
@@ -279,28 +390,24 @@
                             
                             container.appendChild(synapse);
                             
-                            // Animate synapse "neural activity"
+                            // Animate synapse activity
                             gsap.fromTo(synapse, 
-                                { opacity: 0.1 },
+                                { opacity: 0.2 },
                                 {
-                                    opacity: 0.7,
-                                    duration: Math.random() * 2 + 2,
+                                    opacity: 0.8,
+                                    duration: Math.random() * 3 + 2,
                                     repeat: -1,
                                     yoyo: true,
                                     ease: "sine.inOut",
-                                    delay: Math.random() * 5
+                                    delay: Math.random() * 3
                                 }
                             );
                             
-                            // Create data pulse animation
+                            // Create electrical pulses
                             setInterval(() => {
-                                if (Math.random() > 0.7) { // Only animate some synapses at random times
+                                if (Math.random() > 0.6) {
                                     const pulse = document.createElement('div');
-                                    pulse.style.position = 'absolute';
-                                    pulse.style.width = '3px';
-                                    pulse.style.height = '3px';
-                                    pulse.style.borderRadius = '50%';
-                                    pulse.style.backgroundColor = Math.random() > 0.5 ? '#3498db' : '#9b59b6';
+                                    pulse.classList.add('electrical-pulse');
                                     pulse.style.top = '-1px';
                                     pulse.style.left = '0';
                                     synapse.appendChild(pulse);
@@ -308,172 +415,158 @@
                                     gsap.to(pulse, {
                                         left: '100%',
                                         opacity: 0,
+                                        scale: 0.3,
                                         duration: Math.random() * 2 + 1,
-                                        ease: "power1.inOut",
-                                        onComplete: () => {
-                                            pulse.remove();
-                                        }
+                                        ease: "power2.inOut",
+                                        onComplete: () => pulse.remove()
                                     });
                                 }
-                            }, Math.random() * 5000 + 3000);
+                            }, Math.random() * 4000 + 2000);
                         }
                     }
                 }
             }
         }
         
-        // Animation for the brain scan line
-        function animateScanLine() {
-            const scanLine = document.querySelector('.scan-line');
+        // Brain part glow animations
+        function animateBrainParts() {
+            const brainParts = document.querySelectorAll('.brain-part');
             
-            // Create the scanning animation
-            gsap.to(scanLine, {
-                opacity: 0.8,
-                duration: 1.5,
-                delay: 2
-            });
-            
-            gsap.fromTo(scanLine, 
-                { transformOrigin: 'center', scaleX: 0 },
-                {
-                    scaleX: 1,
-                    duration: 1.5,
-                    delay: 2
-                }
-            );
-            
-            // Move from top to bottom
-            gsap.fromTo(scanLine,
-                { top: '10%' },
-                {
-                    top: '90%',
-                    duration: 8,
-                    ease: "power1.inOut",
-                    delay: 3.5,
+            brainParts.forEach((part, index) => {
+                gsap.to(part, {
+                    filter: 'blur(0.5px)',
+                    opacity: 0.6,
+                    scale: 1.02,
+                    duration: Math.random() * 4 + 3,
                     repeat: -1,
                     yoyo: true,
-                    repeatDelay: 2
-                }
-            );
+                    ease: "sine.inOut",
+                    delay: index * 0.5
+                });
+            });
         }
         
-        // Animate the dots
+        // Animate dots
         function animateDots() {
             const dots = document.querySelectorAll('.dot');
             
             gsap.fromTo(dots, 
-                { opacity: 0, y: 0 },
+                { opacity: 0, scale: 0.5 },
                 {
-                    opacity: function(index) {
-                        return 0.7 - (index * 0.1); // Decreasing opacity for each dot
-                    },
-                    y: -10,
-                    duration: 1,
+                    opacity: 0.8,
+                    scale: 1.2,
+                    duration: 1.2,
                     repeat: -1,
                     yoyo: true,
-                    stagger: 0.3,
+                    stagger: 0.4,
                     delay: 4
                 }
             );
         }
         
-        // Wait for page to load
+        // Parallax effect
+        function initParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+                
+                // Brain structure parallax
+                gsap.to('.brain-structure', {
+                    x: mouseX * 15,
+                    y: mouseY * 15,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+                
+                // Neural pathways parallax
+                gsap.to('.neural-pathways', {
+                    x: mouseX * 25,
+                    y: mouseY * 25,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+                
+                // Main content counter-parallax
+                gsap.to('.main-content', {
+                    x: mouseX * -8,
+                    y: mouseY * -8,
+                    duration: 1.2,
+                    ease: "power2.out"
+                });
+            });
+        }
+        
+        // Main initialization
         window.addEventListener('load', () => {
-            // Create main timeline
             const tl = gsap.timeline();
             
-            // Brain scan first
-            tl.to('.brain-scan', {
-                opacity: 0.8,
-                duration: 2,
-                ease: "power2.inOut"
-            });
-            
-            // Main title animation - blur reveal
-            tl.fromTo('.main-title', 
-                { opacity: 0, filter: 'blur(20px)', scale: 0.9 },
-                { 
-                    opacity: 1, 
-                    filter: 'blur(0px)', 
-                    scale: 1,
-                    duration: 2.5, 
-                    ease: "power2.out" 
-                }
+            // Brain structure fade in
+            tl.fromTo('.brain-structure', 
+                { opacity: 0, scale: 0.8 },
+                { opacity: 0.4, scale: 1, duration: 3, ease: "power2.out" }
             );
             
-            // Coming soon text animation
+            // Main title animation
+            tl.fromTo('.main-title', 
+                { opacity: 0, filter: 'blur(20px)', scale: 0.9 },
+                { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 2.5, ease: "power2.out" },
+                "-=2"
+            );
+            
+            // Mission statement animation
+            tl.fromTo('.mission-statement', 
+                { opacity: 0, y: 30 },
+                { opacity: 0.9, y: 0, duration: 2, ease: "power2.out" },
+                "-=1.5"
+            );
+            
+            // Coming soon text
             tl.fromTo('.coming-soon', 
                 { opacity: 0, y: 20 },
                 { opacity: 0.7, y: 0, duration: 1.5, ease: "power2.out" },
                 "-=1"
             );
             
-            // Tagline fade in
+            // Tagline and footer
             tl.fromTo('.tagline', 
                 { opacity: 0, y: -10 },
-                { opacity: 0.5, y: 0, duration: 1.5 },
+                { opacity: 0.6, y: 0, duration: 1.5 },
                 "-=1"
             );
             
-            // Footer fade in
             tl.fromTo('.footer', 
                 { opacity: 0 },
                 { opacity: 0.4, duration: 1.5 },
                 "-=1"
             );
             
-            // Start neural network animation
+            // Start animations
             createNeuralNetwork();
-            
-            // Start scan line animation
-            animateScanLine();
-            
-            // Start dots animation
+            animateBrainParts();
             animateDots();
+            initParallax();
             
-            // Subtle floating animation for the main content
+            // Floating animation for main content
             gsap.to('.main-content', {
-                y: 10,
-                duration: 6,
+                y: 8,
+                duration: 8,
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut"
             });
             
-            // Subtle glow pulse for the title
+            // Enhanced title glow
             gsap.fromTo('.main-title', 
-                { textShadow: '0 0 10px rgba(52, 152, 219, 0.2)' },
+                { textShadow: '0 0 20px rgba(52, 152, 219, 0.3)' },
                 {
-                    textShadow: '0 0 25px rgba(52, 152, 219, 0.5)',
-                    duration: 4,
+                    textShadow: '0 0 40px rgba(52, 152, 219, 0.8), 0 0 60px rgba(155, 89, 182, 0.4)',
+                    duration: 5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3
                 }
             );
-            
-            // Interactive movement with mouse
-            document.addEventListener('mousemove', (e) => {
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
-                
-                // Subtle movement of the neural network based on mouse position
-                gsap.to('.neural-container', {
-                    x: (mouseX - 0.5) * 20,
-                    y: (mouseY - 0.5) * 20,
-                    duration: 0.2,
-                    ease: "power1.out"
-                });
-                
-                // Even more subtle movement of the main content
-                gsap.to('.main-title', {
-                    x: (mouseX - 0.5) * 10,
-                    y: (mouseY - 0.5) * 10,
-                    duration: 1,
-                    ease: "power1.out"
-                });
-            });
         });
     </script>
 </body>
